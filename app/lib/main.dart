@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'clients/api.dart';
+import 'widgets/base/api_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -54,19 +55,7 @@ class _MyHomePageState extends State<MyHomePage> with API {
             //   '$_counter',
             //   style: Theme.of(context).textTheme.headline4,
             // ),
-            FutureBuilder(
-              future: GET('http://0.0.0.0:5000/insert'),
-              builder: (context, snapshot) {
-                if (snapshot.hasData && snapshot.data != null) {
-                  return Text(snapshot.data['data'].toString());
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-
-                // By default, show a loading spinner.
-                return CircularProgressIndicator();
-              },
-            )
+            API_Widget(url: 'http://0.0.0.0:5000/insert')
           ],
         ),
       ),
