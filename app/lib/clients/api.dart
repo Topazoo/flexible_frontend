@@ -1,6 +1,6 @@
 /*
     Author: Peter Swanson
-    Description: API mixin class that allows other classes to send/receive HTTP requests
+    Description: API widget base class that allows subclasses to use data from HTTP requests
 */
 
 import 'dart:convert';
