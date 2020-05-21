@@ -45,7 +45,7 @@ class _APIWidgetState extends State<API_Widget> with API {
     future: GET(widget.url),                            // Attempt GET request
     builder: (context, snapshot) {
       if (snapshot.hasData && snapshot.data != null)    // State 1 - Success [Render display widget with data]
-        return widget.displayWidget(context, snapshot.data[widget.path]); // TODO - Error handling
+        return widget.displayWidget(context, widget.path != null ? snapshot.data[widget.path] : snapshot.data); // TODO - Error handling
       else if (snapshot.hasError)                       // State 2 - Error   [Render error widget]
         return widget.errorWidget("${snapshot.error}");
       return widget.placeholderWidget();                // State 3 - Loading [Render placeholder widget]

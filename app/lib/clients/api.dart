@@ -44,7 +44,7 @@ mixin API {
       ); //TODO - Dynamic headers?
       
       if (response != null && response.statusCode == 200)
-        return new Map.from(jsonDecode(response.body));
+        return new Map.from(jsonDecode(response.body.toString()));
       
       throw new FormatException("GET Request failed with status: ${response.statusCode}.");
     }

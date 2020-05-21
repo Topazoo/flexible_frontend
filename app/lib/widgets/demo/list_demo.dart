@@ -9,6 +9,6 @@ class DemoList extends API_List_Widget {
 
   DemoList({Key key, this.url, this.path}) : super(key: key);
 
-  Widget titleWidget(dynamic data, int index) => Text("MongoDB ID: ${data[index]['item']['name']}");  
-  Widget subTitleWidget(dynamic data, int index) => Text("Price: ${data[index]['item']['price']}gp");                       
+  Widget titleWidget(dynamic data, int index) => Text("${data[index]['item']['name']}");  
+  Widget subTitleWidget(dynamic data, int index) => Text("Price: ${data[index]['item']['current']['price']}gp | Change: ${data[index]['item']['today']['price']}gp");                       
 }
