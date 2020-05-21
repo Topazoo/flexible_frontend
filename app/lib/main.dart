@@ -55,7 +55,7 @@ class _MyHomePageState extends State<MyHomePage> with API {
             //   '$_counter',
             //   style: Theme.of(context).textTheme.headline4,
             // ),
-            DemoList(url: 'http://0.0.0.0:5000/insert', path: 'data',)
+            DemoList(url: 'http://0.0.0.0:5000/',)
           ],
         ),
       ),
