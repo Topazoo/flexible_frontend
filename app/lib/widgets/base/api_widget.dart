@@ -30,7 +30,10 @@ class API_Widget extends StatefulWidget {
 
   Widget displayWidget(BuildContext context, dynamic data) => Text(data.toString());   // Display widget [Can be overidden]
 
-  Widget errorWidget(String error) => Text(error);                                     // Error widget [Can be overidden]
+  Widget errorWidget(String error) => Row(children:[
+      Icon(Icons.warning, color: Colors.red),
+      Text(error, style: TextStyle(color: Colors.red),)], 
+    mainAxisAlignment: MainAxisAlignment.center);                                     // Error widget [Can be overidden]
 
   @override
   _APIWidgetState createState() => _APIWidgetState();

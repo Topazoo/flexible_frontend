@@ -22,7 +22,7 @@ mixin API {
   */
 
 
-  Future<Map> GET(String url, [Map<String, String> params]) async {
+  Future<Map> GET(String url,{ignore_errors=false, Map<String, String> params}) async {
     /*
       Description: 
         Send an asynchronous GET request to the passed url and get a future in return
@@ -35,10 +35,11 @@ mixin API {
         Future<dynamic> - Resolves to a Map containing the JSON data of the request.
     */
 
+    String full_url = url + _format_query_string(params == null ? {} : params);
+
     try {
       http.Response response = await http.get(
-        url + _format_query_string(params == null ? {} : params), 
-        headers: Map<String, String>.from({
+        full_url, headers: Map<String, String>.from({
             'Content-Type': 'application/json',
           })
       ); //TODO - Dynamic headers?
@@ -46,10 +47,14 @@ mixin API {
       if (response != null && response.statusCode == 200)
         return new Map.from(jsonDecode(response.body.toString()));
       
-      throw new FormatException("GET Request failed with status: ${response.statusCode}.");
+      if (!ignore_errors)
+        throw new FormatException("GET Request failed with status: ${response.statusCode}");
     }
-    catch (e) {         
-      print(e); return null;
+    catch (e) {   
+      if (!ignore_errors)
+        throw "${e.toString()} | [$full_url]";
+
+      print(e);
     }
   }
 }
